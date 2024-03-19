@@ -1,13 +1,0 @@
----
-# ------------------------------------------------
-# Fabien first Ansible playbook
-# ------------------------------------------------
-- name: Fabien's first playbook
- hosts: all
- tasks:
-  # Put out a comment
-  - name: "First comment out Hello everyone from Fabien"
-   win_shell: echo "Hello everyone from Fabien {{inventory_hostname}}"
-  # My second comment  
-  - name: "Second comment out from Fabien"
-   win_shell: echo "Hi! back at you..from Fabien"
