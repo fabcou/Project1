@@ -4,7 +4,7 @@
 # Scan all windows servers to list Hostname, IP and OS version
 # ------------------------------------------------------------
 - name: Gather OS information on Windows Servers
-  hosts: all-windows # hosts: localhost
+  hosts: all # hosts: localhost
   gather_facts: no
   # connection: local
   # gather_facts: false
