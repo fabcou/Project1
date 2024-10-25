@@ -1,0 +1,23 @@
+---
+# ------------------------------------------------------------
+# Macquarie University
+# Scan all windows servers to list Hostname, IP and OS version
+# ------------------------------------------------------------
+- name: Gather OS information on Windows Servers
+  hosts: all-windows # hosts: localhost
+  gather_facts: no
+  # connection: local
+  # gather_facts: false
+  # ignore_errors: true
+
+  tasks:
+    - name: Gather facts for Windows servers
+      win_shell: |
+        Get-ComputerInfo | Select-Object -Property CsName, WindowsVersion, WindowsBuildLabEx
+      register: windows_facts
+
+    - name: Create report for Windows servers
+      win_lineinfile:
+        path: C:\Temp\server_report.csv # <<<=== file location ???
+        line: "{{ inventory_hostname }},{{ ansible_default_ipv4.address }},{{ windows_facts.stdout_lines }}"
+        create: yes
